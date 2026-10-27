@@ -1,33 +1,8 @@
-// ============================================
-//  Unit 8.7 – Forms & Event Listeners
-// ============================================
-//  Complete each section below by following
-//  the STEP comments.
-//
-//  IMPORTANT: Use addEventListener() to wire your
-//  buttons — do NOT add onclick in the HTML.
-// ============================================
-
-
-// ============================================
-//  WARM-UP: Shout It!
-// ============================================
-// When the user types text and clicks "Shout",
-// display the text in ALL CAPS with "!" at the end.
-
-// STEP 1: Get the "Shout" button by its ID ("btnShout")
-//         using document.getElementById()
-
-// STEP 2: Add a click event listener to the button.
-//         Inside the listener function:
-//         a) Get the text from the input with ID "shoutInput"
-//            using .value
-//         b) Convert the text to uppercase using .toUpperCase()
-//         c) Add "!" to the end
-//         d) Display the result in the element with ID "outShout"
-//            using .innerHTML
-//
-//         Example: "hello" → "HELLO!"
+let btn = document.getElementById("btnShout");
+btn.addEventListener("click", () => {
+    let x = document.getElementById("shoutInput").value.toUpperCase()+"!";
+    document.getElementById("outShout").innerHTML = x;
+});
 
 
 // ============================================
@@ -43,6 +18,50 @@
 // STEP 3: Get the "Calculate Total" button by ID ("btnCalc")
 //         Add a click event listener.
 //         Inside the listener:
+document.getElementById("btnCalc").addEventListener("click", ()=>{
+    let sizes = document.getElementsByName("rg");
+    let size = "";
+    for(let i=0; i<sizes.length; i++){
+        if(sizes[i].checked){
+            size = parseFloat(sizes[i].value);
+        }
+    }
+    let toppings = document.getElementsByName("cb");
+    let count = 0;
+    for(let i=0; i<toppings.length; i++){
+        if(toppings[i].checked){
+            count++;
+        }
+    }
+    count*=(0.5);
+    let service = document.getElementById("serviceSelect").value;
+    let fee = 0;
+    if(service === "dinein"){
+        fee=0;
+    }
+    else if(service === "takeout"){
+        fee=1.50;
+    }
+    else if(service === "delivery"){
+        fee=3.00;
+    }
+    let total = (size+count+fee).toFixed(2);
+    let name = document.getElementById("myInput").value;
+    if(name === ""){
+        name = "Customer";
+    }
+    document.getElementById("myPara").innerHTML = name+", your total is $"+total;
+});
+document.getElementById("clearBtn").addEventListener("click", ()=>{
+    let name = "";
+    document.getElementById("r3").checked=true;
+    let toppings = document.getElementsByName("cb")
+    for(let i=0; i<toppings.length; i++){
+        toppings[i].checked=false;
+    }
+    document.getElementById("serviceSelect").value="dinein";
+    document.getElementById("output").innerHTML = "";
+});
 
 //   a) Get the selected size price:
 //      Use document.getElementsByName("rg") to get all
