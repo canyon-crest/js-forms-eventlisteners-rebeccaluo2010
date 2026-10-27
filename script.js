@@ -45,7 +45,7 @@ document.getElementById("clearBtn").addEventListener("click", ()=>{
         toppings[i].checked=false;
     }
     document.getElementById("serviceSelect").value="dinein";
-    document.getElementById("output").innerHTML = "";
+    document.getElementById("myPara").innerHTML = "";
 });
 
 // STEP 4: Get the "Clear" button by ID ("clearBtn")
